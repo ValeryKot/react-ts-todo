@@ -1,14 +1,28 @@
-import { TodoItem } from "./TodoItem"
-import { ITodo } from "../types/data"
+import { TodoItem } from './TodoItem';
+import { ITodo } from '../types/data';
 
-type Props = {}
+// type Props = {}
 
 interface ITodoListProps {
-    items: ITodo[];
+  items: ITodo[];
+  toggleTodo: (id: number) => void;
+  removeTodo: (id: number) => void;
 }
 
 const TodoList: React.FC<ITodoListProps> = (props) => {
-    return <div></div>
-}
+  const { items, toggleTodo, removeTodo } = props;
+  return (
+    <div>
+      {items.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          toggleTodo={toggleTodo}
+          removeTodo={removeTodo}
+          {...todo}
+        />
+      ))}
+    </div>
+  );
+};
 
-export {TodoList}
+export { TodoList };
